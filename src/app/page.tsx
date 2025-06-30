@@ -25,7 +25,6 @@ type Event = {
       };
     }[];
   };
-  [key: string]: any; // Extend with actual event properties if available
 };
 
 export default function Home() {

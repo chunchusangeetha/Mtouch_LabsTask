@@ -28,7 +28,7 @@ export async function fetchEvents({
     const totalPages = data.page?.totalPages || 0;
 
     return { events, totalPages };
-  } catch (error) {
+  } catch {
     return { events: [], totalPages: 0 };
   }
 }
