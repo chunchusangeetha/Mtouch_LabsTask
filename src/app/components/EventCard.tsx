@@ -1,5 +1,22 @@
 interface EventCardProps {
-  event: any;
+  event: {
+    name: string;
+    dates?: {
+      start?: {
+        localDate?: string;
+        localTime?: string;
+      };
+    };
+    info?: string;
+    _embedded?: {
+      venues?: Array<{
+        name?: string;
+        country?: {
+          name?: string;
+        };
+      }>;
+    };
+  };
 }
 
 export default function EventCard({ event }: EventCardProps) {

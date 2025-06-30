@@ -12,7 +12,16 @@ export async function GET(req: Request) {
   const startDate = searchParams.get("startDate");
   const endDate = searchParams.get("endDate");
 
-  const params: any = {
+  interface Params {
+    apikey: string;
+    size: number;
+    page: string;
+    countryCode?: string;
+    startDateTime?: string;
+    endDateTime?: string;
+  }
+
+  const params: Params = {
     apikey: API_KEY,
     size: 10,
     page,
@@ -34,7 +43,11 @@ export async function GET(req: Request) {
     });
 
     return NextResponse.json(response.data);
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    let message = "An unknown error occurred";
+    if (error instanceof Error) {
+      message = error.message;
+    }
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
